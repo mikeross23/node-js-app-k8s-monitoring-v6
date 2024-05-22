@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-
 # node-js-app-k8s-monitoring-v6
 
 # Project contains simple Node.js app and Prometheus/Grafana/Loki monitoring stack deployment to Kubernetes
-
-# Node.js Application and Monitoring Stack Deployment on Kubernetes with Minikube
 
 This guide walks through deploying a Node.js application along with a Prometheus and Grafana monitoring stack on Kubernetes using Minikube.
 
