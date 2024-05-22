@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      initContainers:
+        - name: setup-loki-directories
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "mkdir -p /data/loki/index /data/loki/cache /data/loki/chunks /data/loki/wal /data/loki/compactor && chmod -R 777 /data/loki",
+            ]
+          volumeMounts:
+            - name: loki-storage
+              mountPath: /data/loki
+      containers:
+        - name: loki
+          image: grafana/loki:2.9.1
+          args:
+            - "-config.file=/etc/loki/loki.yaml"
+          ports:
+            - containerPort: 3100
+          volumeMounts:
+            - name: loki-config
+              mountPath: /etc/loki
+            - name: loki-storage
+              mountPath: /data/loki
+        - name: promtail
+          image: grafana/promtail:2.9.1
+          args:
+            - "-config.file=/etc/promtail/promtail.yaml"
+          volumeMounts:
+            - name: loki-config
+              mountPath: /etc/promtail
+            - name: loki-storage
+              mountPath: /var/log
+      volumes:
+        - name: loki-config
+          configMap:
+            name: loki-config
+        - name: loki-storage
+          emptyDir: {}

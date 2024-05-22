@@ -1,0 +1,21 @@
+{
+  "name": "nodeapp",
+  "description": "Test Nodeapp for Kubernetes",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "4.17.1",
+    "prom-client": "^15.1.2"
+  },
+  "devDependencies": {
+    "mocha": "9.1.1",
+    "supertest": "6.1.6"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha ./test/test.js"
+  },
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
