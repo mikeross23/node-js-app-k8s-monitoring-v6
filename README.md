@@ -19,8 +19,8 @@ Before you begin, ensure you have the following installed on your machine:
 1. Create a directory for your Node.js app and navigate into it:
 
 ```sh
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/mikeross23/node-js-app-k8s-monitoring-v6
+   cd node-js-app-k8s-monitoring-v6
 ```
 
 2. Start Node.js application:
